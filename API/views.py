@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .serializers import ProfileSerializer, FriendSerializer
-from .models import Profile, Friend, Chat, Message
+from .models import Profile, Friend
 
 
 class ProfileView(viewsets.ModelViewSet):
@@ -10,11 +10,6 @@ class ProfileView(viewsets.ModelViewSet):
 
 class FriendView(viewsets.ModelViewSet):
     queryset = Friend.objects.all()
-    serializer_class = FriendSerializer
-
-
-class ChatView(viewsets.ModelViewSet):
-    queryset = Chat.objects.all()
     serializer_class = FriendSerializer
 
 

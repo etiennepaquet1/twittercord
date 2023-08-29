@@ -34,11 +34,7 @@ class Chat(models.Model):
     chat_id: models.IntegerField(primary_key=True, unique=True)
     type: models.CharField(max_length=64, default="DM")
     chat_name: models.CharField(max_length=512, default="", unique=False)
-
-
-class DMs(Chat):
-    friend1 = models.ForeignKey('Friend', on_delete=models.DO_NOTHING, related_name='FriendDMs1')
-    friend2 = models.ForeignKey('Friend', on_delete=models.DO_NOTHING, related_name='FriendDMs2')
+    members = [models.ForeignKey('Profile', on_delete=models.DO_NOTHING, related_name='ChatMembers')]
 
 
 class Message(models.Model):
