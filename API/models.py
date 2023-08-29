@@ -28,16 +28,17 @@ class Profile(models.Model):
 class Friend(models.Model):
     friend_profile = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name="friend_profiles")
     self_profile = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name="self_profiles")
-    # DMs: Chat
 
 
 class Chat(models.Model):
     chat_id: models.IntegerField(primary_key=True, unique=True)
+    type: models.CharField(max_length=64, default="DM")
     chat_name: models.CharField(max_length=512, default="", unique=False)
 
 
 class DMs(Chat):
-    friend = models.ForeignKey('Friend', on_delete=models.DO_NOTHING, related_name='DMs')
+    friend1 = models.ForeignKey('Friend', on_delete=models.DO_NOTHING, related_name='FriendDMs1')
+    friend2 = models.ForeignKey('Friend', on_delete=models.DO_NOTHING, related_name='FriendDMs2')
 
 
 class Message(models.Model):
@@ -46,5 +47,4 @@ class Message(models.Model):
     content = models.CharField(max_length=1048576, default='', unique=False)
     timedate = models.DateTimeField(auto_now_add=True)
     edited = models.BooleanField(null=False, default=False)
-
 

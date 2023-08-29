@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile, Friend
+from .models import Profile, Friend, Chat, Message, DMs
 
 
 class FriendSerializer(serializers.ModelSerializer):
@@ -16,3 +16,25 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = '__all__'
         depth = 2
+
+
+class ChatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chat
+        fields = '__all__'
+        depth = 2
+
+
+class DMSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DMs
+        fields = '__all__'
+        depth = 2
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = '__all__'
+        depth = 2
+
